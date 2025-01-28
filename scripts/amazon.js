@@ -1,4 +1,5 @@
-import {cart} from '../data/cart.js';
+import {cart,addToCart} from '../data/cart.js';
+// can use import * for that file to access content in the file which is export
 import {products} from '../data/products.js';
 let productsHTML='';
 products.forEach((product)=>{
@@ -58,33 +59,25 @@ products.forEach((product)=>{
 
 document.querySelector('.js-products-grid').innerHTML=productsHTML;
 
+
+
+function updateCartquantity()
+{
+  let cartquantity=0;
+  cart.forEach((cartItem)=>
+    {
+      cartquantity+=cartItem.quantity;
+    })
+
+    document.querySelector('.js-cart-quantity').innerHTML=cartquantity;
+  
+}
+
 document.querySelectorAll('.js-add-to-cart')
 .forEach((button)=>{
   button.addEventListener('click',()=>{
   const productid=button.dataset.productId;
-  let matchingItem;
-  cart.forEach((item)=>{
-    if(productid === item.productId)
-    {
-      matchingItem=item;
-    }
-  });
-  if(matchingItem)
-  {
-    matchingItem.quantity+=1;
-  }
-    else{
-      cart.push({
-        productId:productid,
-        quantity:1
-      });
-    }
-    let cartquantity=0;
-    cart.forEach((item)=>
-    {
-      cartquantity+=item.quantity;
-    })
-
-    document.querySelector('.js-cart-quantity').innerHTML=cartquantity;
-   });
+    addToCart(productid);
+    updateCartquantity();
+    });
   });
