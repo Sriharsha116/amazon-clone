@@ -1,6 +1,7 @@
 import {cart,addToCart} from '../data/cart.js';
 // can use import * for that file to access content in the file which is export
 import {products} from '../data/products.js';
+import { formatcurrency } from './utils/money.js';
 let productsHTML='';
 products.forEach((product)=>{
    productsHTML+=`
@@ -23,7 +24,7 @@ products.forEach((product)=>{
           </div>
 
           <div class="product-price">
-            $${(product.priceCents/100).toFixed(2)}
+            $${formatcurrency(product.priceCents)}
           </div>
 
           <div class="product-quantity-container">
