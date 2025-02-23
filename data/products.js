@@ -112,6 +112,7 @@ export function loadProductsFetch(){
 loadProductsFetch().then(()=>{
   console.log('nextstep');
 });
+*/
 
 export function loadProducts(fun){
   const xhr=new XMLHttpRequest();
