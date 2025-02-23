@@ -6,7 +6,23 @@ import {loadCart} from '../data/cart.js'
 //import '../data/backened-practice.js';
 
 //built in class which will run the function immediately 
+async function loadPage()
+{
 
+  const value=await loadProductsFetch(); //we can use await when we are in async func only
+  await new Promise((resolve)=>{
+    loadCart(()=>{
+       resolve('value3');
+    });
+  });
+
+  renderOrderSummary();
+  renderPaymentSummary();
+
+
+}
+loadPage();
+/*
 Promise.all([
   loadProductsFetch(),
   new Promise((resolve)=>{
